@@ -44,6 +44,8 @@ export class UsersService {
       password: hashedPassword,
     });
 
-    return createdUser.save();
+    const savedUser = await createdUser.save();
+
+    return this.userModel.findById(savedUser._id).select('-password');
   }
 }
