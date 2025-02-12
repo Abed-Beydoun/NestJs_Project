@@ -13,22 +13,6 @@ export class UsersService {
   ) {}
 
   async createUser(user: CreateUserDto) {
-    if (!user.firstName || user.firstName === '') {
-      return 'firstName is required';
-    }
-
-    if (!user.lastName || user.lastName === '') {
-      return 'lastName is required';
-    }
-
-    if (!user.email || user.email === '') {
-      return 'email is required';
-    }
-
-    if (!user.password || user.password === '') {
-      return 'password is required';
-    }
-
     const userExist = await this.userModel.findOne({
       email: user.email,
     });
