@@ -1,4 +1,8 @@
-import { ConflictException, Injectable } from '@nestjs/common';
+import {
+  ConflictException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { User } from 'src/models/user.schema';
@@ -37,5 +41,13 @@ export class UsersService {
     return await this.userModel.find();
   }
 
-  async deleteUser(user:)
+  async deleteUser(id: string): Promise<boolean> {
+    const deletedUser = await this.userModel.findByIdAndDelete(id);
+
+    if (!deletedUser) {
+      throw new NotFoundException('User not found!');
+    }
+
+    return true;
+  }
 }
