@@ -32,4 +32,8 @@ export class UsersService {
 
     return this.userModel.findById(savedUser._id).select('-password');
   }
+
+  async getAllUsers() {
+    return await this.userModel.find();
+  }
 }
