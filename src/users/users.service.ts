@@ -36,4 +36,6 @@ export class UsersService {
   async getAllUsers() {
     return await this.userModel.find();
   }
+
+  async deleteUser(user:)
 }
