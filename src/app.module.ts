@@ -3,6 +3,7 @@ import { UsersModule } from './users/users.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { MongooseModule } from '@nestjs/mongoose';
+import { PostsModule } from './posts/posts.module';
 
 @Module({
   imports: [
@@ -28,6 +29,7 @@ import { MongooseModule } from '@nestjs/mongoose';
       autoLoadEntities: true,
       synchronize: true,
     }),
+    PostsModule,
   ],
   controllers: [],
   providers: [],
