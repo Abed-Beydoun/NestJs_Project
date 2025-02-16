@@ -29,4 +29,8 @@ export class PostsService {
 
     return savedPost;
   }
+
+  async getAllPosts() {
+    return await this.postRepo.find();
+  }
 }
