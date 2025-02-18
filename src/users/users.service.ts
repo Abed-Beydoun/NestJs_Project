@@ -41,6 +41,16 @@ export class UsersService {
     return await this.userModel.find();
   }
 
+  async getUser(id: string) {
+    const user = await this.userModel.findById(id);
+
+    if (!user) {
+      throw new NotFoundException('User not found!');
+    }
+
+    return user;
+  }
+
   async deleteUser(id: string): Promise<boolean> {
     const deletedUser = await this.userModel.findByIdAndDelete(id);
 
