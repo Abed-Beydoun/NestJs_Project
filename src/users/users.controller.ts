@@ -12,6 +12,7 @@ import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { DeleteUserDto } from './dto/delete-user.dto';
 import { Response } from 'express';
+import { getUserDto } from './dto/get-user.dto';
 
 @Controller('user')
 export class UsersController {
@@ -25,6 +26,17 @@ export class UsersController {
   @Get()
   async getAllUsers() {
     return await this.userService.getAllUsers();
+  }
+
+  @Get(':id')
+  async getUser(@Param() user: getUserDto, @Res() res: Response) {
+    const fetchedUser = await this.userService.getUser(user.id);
+
+    if (!fetchedUser) {
+      return res.status(HttpStatus.INTERNAL_SERVER_ERROR).send();
+    }
+
+    return fetchedUser;
   }
 
   @Delete(':id')
